@@ -1,3 +1,6 @@
+<img width="1792" alt="image" src="https://github.com/user-attachments/assets/48fc571a-a27b-4d23-9207-15125b24b613">
+
+
 # Devsu
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
@@ -8,7 +11,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng serve` to generate a new component. 
 
 ## Build
 
