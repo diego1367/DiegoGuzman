@@ -1,0 +1,58 @@
+<div class="body">
+    <div class="container">
+      <div class="align">
+        <input type="text" id="search" (input)="filterTable($event)" placeholder="Buscar...">
+        <button type="button" (click)="navigateToAbout()" class="btn submit">Agregar</button>
+      </div>
+      <table id="productTable">
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Nombre del producto</th>
+            <th>Descripción</th>
+            <th>Fecha de liberación</th>
+            <th>Fecha de reestructuración</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of paginatedRecords">
+            <td>{{record.logo}}</td>
+            <td>{{record.name}}</td>
+            <td>{{record.description}}</td>
+            <td>{{record.date_release}}</td>
+            <td>{{record.date_revision}}</td>
+            <td>
+              <div class="dropdown">
+                <button class="dropbtn" type="button">&#x22EE;</button>
+                <div class="dropdown-content">
+                  <a class="dropdown-item" (click)="editRecord(record)">Editar</a>
+                  <a class="dropdown-item" (click)="deleteRecord(record)">Eliminar</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="align-pagination">
+        <span>{{paginatedRecords.length}} Resultados</span>
+        <div class="pagination">
+          <button (click)="previousPage()" [disabled]="currentPage === 1">&laquo;</button>
+          <span>Página {{currentPage}} de {{totalPages}}</span>
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages">&raquo;</button>
+        </div>
+        <select id="recordsPerPage" class="form-control" [(ngModel)]="recordsPerPage" (change)="updateRecordsPerPage($event)">
+          <option *ngFor="let option of recordsPerPageOptions" [value]="option">{{option}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-dialog
+      *ngIf="showDialog"
+      [title]="idEliminar.name"
+      (confirm)="confirmDelete()"
+      (cancel)="closeDialog()">
+    </app-dialog>
+  </div>
+  

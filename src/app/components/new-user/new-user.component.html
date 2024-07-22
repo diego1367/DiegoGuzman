@@ -1,0 +1,92 @@
+<div class="base">
+    <div class="form-container">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()" id="registroForm" class="row g-3 needs-validation" novalidate>
+        <h1>Formulario de Registro</h1>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <label for="validationDefault01">ID</label>
+            <input type="text" id="id" class="form-control form-control-lg" formControlName="id"
+              [ngClass]="{'is-invalid': myForm.get('id')?.invalid && myForm.get('id')?.touched}">
+            <div class="invalid-feedback" *ngIf="myForm.get('id')?.hasError('required') && myForm.get('id')?.touched">
+              ID no válido!
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('id')?.hasError('minlength') && myForm.get('id')?.touched">
+              Requiere un mínimo de 3 caracteres!
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('id')?.hasError('maxlength') && myForm.get('id')?.touched">
+              Requiere un máximo de 10 caracteres!
+            </div>
+          </div>
+          <div class="col">
+            <label for="validationDefault02">Nombre</label>
+            <input type="text" id="name" class="form-control form-control-lg" formControlName="name"
+              [ngClass]="{'is-invalid': myForm.get('name')?.invalid && myForm.get('name')?.touched}">
+            <div class="invalid-feedback" *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched">
+              Requiere un Nombre
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('name')?.hasError('minlength') && myForm.get('name')?.touched">
+              Requiere un mínimo de 5 caracteres!
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('name')?.hasError('maxlength') && myForm.get('name')?.touched">
+              Requiere un máximo de 100 caracteres!
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="validationDefault03">Descripción</label>
+            <input type="text" id="description" class="form-control form-control-lg" formControlName="description"
+              [ngClass]="{'is-invalid': myForm.get('description')?.invalid && myForm.get('description')?.touched}">
+            <div class="invalid-feedback" *ngIf="myForm.get('description')?.hasError('required') && myForm.get('description')?.touched">
+              Requiere una Descripción.
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('description')?.hasError('minlength') && myForm.get('description')?.touched">
+              Requiere un mínimo de 10 caracteres!
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('description')?.hasError('maxlength') && myForm.get('description')?.touched">
+              Requiere un máximo de 200 caracteres!
+            </div>
+          </div>
+          <div class="col">
+            <label for="validationDefault04">Logo</label>
+            <input type="text" id="logo" class="form-control form-control-lg" formControlName="logo"
+              [ngClass]="{'is-invalid': myForm.get('logo')?.invalid && myForm.get('logo')?.touched}">
+            <div class="invalid-feedback" *ngIf="myForm.get('logo')?.hasError('required') && myForm.get('logo')?.touched">
+              Requiere un nombre de logo.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="validationDefault05">Fecha Liberación</label>
+            <input type="date" id="date_release" class="form-control form-control-lg" formControlName="date_release"
+              [ngClass]="{'is-invalid': myForm.get('date_release')?.invalid && myForm.get('date_release')?.touched}">
+            <div class="invalid-feedback" *ngIf="myForm.get('date_release')?.hasError('required') && myForm.get('date_release')?.touched">
+              Requiere una fecha de liberación.
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('date_release')?.hasError('dateReleaseInvalid') && myForm.get('date_release')?.touched">
+              La fecha debe ser igual o mayor a la fecha actual.
+            </div>
+          </div>
+          <div class="col">
+            <label for="validationDefault06">Fecha Revisión</label>
+            <input type="date" id="date_revision" class="form-control form-control-lg" formControlName="date_revision"
+              [ngClass]="{'is-invalid': myForm.get('date_revision')?.invalid && myForm.get('date_revision')?.touched}">
+            <div class="invalid-feedback" *ngIf="myForm.get('date_revision')?.hasError('required') && myForm.get('date_revision')?.touched">
+              Requiere una fecha de revisión.
+            </div>
+            <div class="invalid-feedback" *ngIf="myForm.get('date_revision')?.hasError('dateRevisionInvalid') && myForm.get('date_revision')?.touched">
+              La fecha debe ser exactamente un año posterior a la fecha de liberación.
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="reset" class="btn reset" (click)="onReset()">Reiniciar</button>
+          <button *ngIf="!isIdDisabled" type="submit" class="btn submit">Enviar</button>
+          <button *ngIf="isIdDisabled" type="button" class="btn submit" (click)="updateInfo()">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
